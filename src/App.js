@@ -104,7 +104,13 @@ let favoriteMovies = [];
 
 for ( let prop in movies){
   const profilesFavMovie = profiles.filter(profile => parseInt(profile.favoriteMovieID, 10) === movies[prop].id);
-  const usersFavMovie = profilesFavMovie.map(profile => {let userInfo = new Object; userInfo.id = users[profile.userID].id ;userInfo.name = users[profile.userID].name; return userInfo; });
+  const usersFavMovie = profilesFavMovie.map(profile =>
+                            {
+                              let userInfo = {};
+                              userInfo.id = users[profile.userID].id ;
+                              userInfo.name = users[profile.userID].name;
+                              return userInfo;
+                            });
   favoriteMovies.push(<FavoriteMovie key={movies[prop].id} movieName={movies[prop].name} users={usersFavMovie}/>);
 }
 
